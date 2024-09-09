@@ -1,0 +1,124 @@
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
+<html>
+<head>
+  <title>List todos Page</title>
+</head>
+<body>
+
+    <div>Welcome ${name}</div>
+    <div>Your todos are </div>
+    <table>
+      <thead>
+        <tr>
+          <th>id</th>
+          <th>Description</th>
+          <th>Target Date</th>
+          <th>is Done?</th>
+        </tr>
+      </thead>
+      <tbody>
+        <c:forEach items="${todos}" var="todo">
+          <tr>
+            <td>${todo.id}</td>
+            <td>${todo.description}</td>
+            <td>${todo.targetDate}</td>
+            <td>${todo.done}</td>
+          </tr>
+        </c:forEach>
+      </tbody>
+    </table>
+
+</body>
+</html>
+
+
+
+<%@ page import="java.util.List" %>
+<%@ page import="com.in28Min.springboot.myfurstwebapp.todo.Todo" %>
+
+<html>
+<head>
+  <title>List todos Page</title>
+</head>
+<body>
+<nav class="navbar navbar-expand-md navbar-light bg-light mb-3 p-1">
+	<a class="navbar-brand m-1" href="https://courses.in28minutes.com">in28Minutes</a>
+	<div class="collapse navbar-collapse">
+		<ul class="navbar-nav">
+			<li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+			<li class="nav-item"><a class="nav-link" href="/list-todos">Todos</a></li>
+		</ul>
+	</div>
+	<ul class="navbar-nav">
+		<li class="nav-item"><a class="nav-link" href="/logout">Logout</a></li>
+	</ul>
+</nav>
+    <div>Welcome <%= request.getAttribute("name") %></div>
+    <H1>Your todos are </H1>
+    <table>
+      <thead>
+        <tr>
+          <th>id</th>
+          <th>Description</th>
+          <th>Target Date</th>
+          <th>is Done?</th>
+        </tr>
+      </thead>
+      <tbody>
+        <%
+          List<Todo> todos = (List<Todo>) request.getAttribute("todos");
+          for (Todo todo : todos) {
+        %>
+          <tr>
+            <td><%= todo.getId() %></td>
+            <td><%= todo.getDescription() %></td>
+            <td><%= todo.getTargetDate() %></td>
+            <td><%= todo.isDone() %></td>
+          </tr>
+        <% } %>
+      </tbody>
+    </table>
+
+</body>
+</html>
+
+///////////////////////////////////////////////////////
+
+<link href="webjars/bootstrap/5.1.3/css/bootstrap.min.css" rel="stylesheet" >
+<script src="webjars/bootstrap/5.1.3/js/bootstrap.min.js"></script>
+<script src="webjars/jquery/3.6.0/jquery.min.js"></script>
+
+
+
+<link href="webjars/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.standalone.min.css" rel="stylesheet" >
+
+<fieldset class="mb-3">
+	<form:label path="description">Description</form:label>
+	<form:input type="text" path="description" required="required"/>
+	<form:errors path="description" cssClass="text-warning"/>
+</fieldset>
+<fieldset class="mb-3">
+	<form:label path="targetDate">Target Date</form:label>
+	<form:input type="text" path="targetDate" required="required"/>
+	<form:errors path="targetDate" cssClass="text-warning"/>
+</fieldset>
+
+<script src="webjars/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+<script type="text/javascript">
+	$('#targetDate').datepicker({
+	    format: 'yyyy-mm-dd'
+	});
+</script>
+//////////////////////////////////////////////////////////////
+<nav class="navbar navbar-expand-md navbar-light bg-light mb-3 p-1">
+	<a class="navbar-brand m-1" href="https://courses.in28minutes.com">in28Minutes</a>
+	<div class="collapse navbar-collapse">
+		<ul class="navbar-nav">
+			<li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+			<li class="nav-item"><a class="nav-link" href="/list-todos">Todos</a></li>
+		</ul>
+	</div>
+	<ul class="navbar-nav">
+		<li class="nav-item"><a class="nav-link" href="/logout">Logout</a></li>
+	</ul>
+</nav>
