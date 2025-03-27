@@ -1,0 +1,12 @@
+{
+  "role": {
+    "name": "Todo-Web-App"
+  },
+  "sampling": {
+    "percentage": 100
+  },
+  "telemetryProcessors": [],
+  "telemetryChannel": {
+    "developerMode": false
+  }
+}
