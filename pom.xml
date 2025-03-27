@@ -130,5 +130,10 @@
 			</snapshots>
 		</pluginRepository>
 	</pluginRepositories>
+	<dependency>
+    <groupId>com.microsoft.applicationinsights</groupId>
+    <artifactId>applicationinsights-core</artifactId>
+    <version>3.4.16</version>
+</dependency>
 
 </project>
